@@ -9,31 +9,32 @@
   <body>
     <div id="root"></div> <!-- 결과 : <div id="root"><button>Like</button></div> -->
     <script type="text/babel">
-      class GuGuDan extends React.Component {
-        constructor(props) {
-          super(props);
-          this.state = {
+      class GuGuDan extends React.Component { 
+          state = {
             first : Math.ceil(Math.random() * 9),
             second : Math.ceil(Math.random() * 9),
             value : '',
             result : '',
           }
-        } 
+      
         onSubmit = (e) => {
           e.preventDefault();
           if(parseInt(this.state.value) === this.state.first * this.state.second) {
-            this.setState({
-              result : '정답',
-              first : Math.ceil(Math.random() * 9),
-              second : Math.ceil(Math.random() * 9),
-              value : ''
-
+            this.setState((prevState) => { //바꾸고 싶은 상태 입력
+              return {
+                result : '정답 : ' +  prevState.value,
+                first : Math.ceil(Math.random() * 9),
+                second : Math.ceil(Math.random() * 9),
+                value : ''
+              }
             });
+            this.input.focus();
           } else {
             this.setState({
               result : '땡',
               value : '',
             });
+            this.input.focus();
           }
         };
 
@@ -42,16 +43,21 @@
         };
         // 태그 사이의 컨텐트에 중괄호{}를 넣으면 자바스크립트를 쓸 수 있다.
         //싱글 태그는 닫는태그 꼭 붙여줘야함..(xml이라 엄격함)
+
+        input;
+        onRefInput = (c) => {this.input = c;}
+
+        //setState 가 일어날 때 마다 render가 실행되기 때문에 함수들은 밖으로 빼주는 것이 좋다.
         render() {
           return (
-            <div>
+            <>
               <div>{this.state.first}곱하기 {this.state.second}는</div>
               <form onSubmit={this.onSubmit}>
-                <input type="number" value={this.state.value} onChange={this.onChange} />
-                <button>입력!</button>
+                <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange} />
+                <button type="submit">입력!</button>
               </form>
               <div>{this.state.result}</div>
-            </div>
+            </>
           )
         }
       }
