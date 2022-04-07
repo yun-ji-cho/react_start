@@ -1,6 +1,7 @@
 const React = require('react');
 const Try = require('./Try');
 const { memo } = React;
+const { useState } = React;
 
 //this 안쓰면 밖으로 함수를 뺄 수 있다.
 function getNumbers() { //  숫자 4개를 랜덤하게 뽑는 함수
@@ -51,7 +52,7 @@ const NumberBaseball = memo(() => {
           }
         }
         setValue('');
-        setTries((prevState) => [...prevState.tries, {try : value, result : `${strike} 스트라이크, ${ball} 볼입니다.`}]
+        setTries((prevState) => [...prevState, {try : value, result : `${strike} 스트라이크, ${ball} 볼입니다.`}]
         );
       }
     }
