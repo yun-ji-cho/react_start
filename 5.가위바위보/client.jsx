@@ -1,0 +1,13 @@
+// import React from 'react';
+// import ReactDom from 'react-dom';
+// import RSP from './RSP';
+
+// ReactDom.render(<RSP/>, document.querySelector('#root'));
+
+
+// //hooks
+import React from 'react';
+import ReactDom from 'react-dom';
+import RSP from './RSP_hooks';
+
+ReactDom.render(<RSP/>, document.querySelector('#root'));
