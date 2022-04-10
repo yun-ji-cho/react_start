@@ -15,10 +15,8 @@
 
 
 //렌더링 최소화 : memo 이용 (프롭스, 스테이트가 바뀌었을 때만 렌더링 해줌)
-const React = require('react');
-const { memo } = React;
+import React, {memo} from 'react';
 const Try = memo(({ tryInfo }) => {
-  
     return (
       <li>
         <div>{tryInfo.try}</div>
