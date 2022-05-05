@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div> <!-- 결과 : <div id="root"><button>Like</button></div> -->
+    <script type="text/babel">
+      const GuGUDan = () => {
+        const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9)); //setFirst는 first 전용 setState 이다.
+        const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+        const [value, setValue] = React.useState(''); //()안에다가 초기 값을 넣어주면 된다.
+        const [result, setResult] = React.useState('');
+        //use ~ 로 시작하는 애들이 Hooks , 함수 컴포넌트에 훅스가 추가된거임
+
+        return <div>{first} {second} {value} {result}</div>;
+      }
+    </script>
+    <script type="text/babel">
+      ReactDOM.render(<GuGUDan/>, document.querySelector('#root'));
+    </script>
+  </body>
+</html>
